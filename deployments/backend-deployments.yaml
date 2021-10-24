@@ -1,0 +1,28 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: simplebackend-deployment
+  labels:
+    app: simplebackend
+spec:
+  selector:
+    matchLabels:
+      app: simplebackend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: simplebackend
+    spec:
+      containers:
+      - name: simplebackend
+        image: docker.io/kudddy/iseeyoubackend
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+          - name: PG_URL
+            value: postgresql://user:pass@localhost:5434/db
+        ports:
+        - containerPort: 8080
