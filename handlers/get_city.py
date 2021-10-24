@@ -1,11 +1,11 @@
 import logging
 
 from aiohttp.web_response import Response
-from aiohttp_apispec import docs, response_schema
+from aiohttp_apispec import docs
 from pydantic import ValidationError
 
 from .base import BaseView
-from message_schema import UserCityReq, UserCityResp
+from message_schema import UserCityReq
 from plugins.pg.query import get_city
 
 logging.basicConfig(level=logging.DEBUG)
@@ -15,7 +15,7 @@ log.setLevel(logging.DEBUG)
 
 
 class GetUserCity(BaseView):
-    URL_PATH = r'/city/'
+    URL_PATH = r'/get_city/'
 
     @docs(summary="Ручка возвращает город в котором живет пользователь", tags=["Basic methods"],
           description="Просто возвращаем город пользователяв",
@@ -36,8 +36,8 @@ class GetUserCity(BaseView):
               }
           ]
           )
-    @response_schema(UserCityResp(), description="Возвращаем ранее добавлены комментарии к фотографии, "
-                                                 "сортированные по дате")
+    # @response_schema(description="Возвращаем ранее добавлены комментарии к фотографии, "
+    #                              "сортированные по дате")
     async def post(self):
 
         data: dict = await self.request.json()

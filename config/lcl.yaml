@@ -1,31 +1,8 @@
 app:
-  directory:
-    model_path: persistant/w2v/model_hh_fasttext
-    stop_words_path: persistant/stopwords.txt
   constants:
-    timeout_for_chat: 5
-    number_of_recs: 20
     debug: False
   hosts:
-    tlg:
-      send_message: https://api.telegram.org/bot1238618041:AAGiAHI9FyQHMM4IpYqS_YRTMTxCpDnODJM/sendMessage
-      edit_message: https://api.telegram.org/bot1238618041:AAGiAHI9FyQHMM4IpYqS_YRTMTxCpDnODJM/editMessageText
-    mc:
-      host: 127.0.0.1
-      port: 11211
     pg:
-      host: 127.0.0.1
-      port: 5432
-      # url: postgresql://user:pass@localhost:5434/db
-      url: postgresql://postgres:0xAK2My9ypGu7oyy@35.204.68.36/postgres
-    fastext: not ready yet
-    sbervacanсy:
-      host: https://my.sbertalents.ru/#/job-requisition/{}
-    sf:
-      host: https://api18.sapsf.com/odata/v2/JobRequisition({})?$format=json
-  pwd:
-    sf:
-      us: sfapi_smart_talents@paosberbanP2
-      ps: lA&T|f+hH8
+      url: postgresql://user:pass@localhost:5434/db
 
 
