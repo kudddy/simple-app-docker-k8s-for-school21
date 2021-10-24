@@ -1,5 +1,5 @@
-from .get_city import GetMessageFromTlg
+from .get_city import GetUserCity
 
 HANDLERS = (
-    GetMessageFromTlg,
+    GetUserCity,
 )

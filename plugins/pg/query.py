@@ -9,5 +9,19 @@ def get_city(user_id: int):
     return query
 
 
-
-
+def upload_test_data():
+    data = [
+        {
+            "user_id": 123,
+            "city": "moscow"
+        },
+        {
+            "user_id": 234,
+            "city": "saint-p"
+        },
+        {
+            "user_id": 345,
+            "city": "akhtubinsk"
+        },
+    ]
+    return user_data.insert().values(data)
