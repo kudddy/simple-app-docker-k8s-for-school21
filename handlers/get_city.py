@@ -8,6 +8,7 @@ from .base import BaseView
 from message_schema import UserCityReq
 from plugins.pg.query import get_city
 
+# не забываем про логирование
 logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
 
@@ -43,15 +44,17 @@ class GetUserCity(BaseView):
         data: dict = await self.request.json()
 
         try:
+            # валидация входящего запроса и синхронизуем объект с json
             user = UserCityReq(**data)
         except ValidationError as e:
+            # пишем в лог статус
             log.info("validation error - %s", e)
             return Response(body={
                 "message_name": "GET_CITY",
                 "status": False,
                 "desk": "wrong_input"
             })
-
+        # синхронизация объекта и записей базы данных
         query = get_city(user.user_id)
 
         result = []
@@ -63,6 +66,6 @@ class GetUserCity(BaseView):
         return Response(body={
             "message_name": "GET_CITY",
             "status": True,
-            "user_id": result,
-            "city": "Moscow"
+            "city": result,
+            "desk": "ok"
         })
