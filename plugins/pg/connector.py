@@ -37,6 +37,7 @@ async def setup_pg(app: Application) -> PG:
     try:
         yield
     finally:
+        # перед завершением работы приложения аккуратно разрываем соединениее с базой данных
         log.info('Disconnecting from database %s', DEFAULT_PG_URL)
         await app['pg'].pool.close()
         log.info('Disconnected from database %s', DEFAULT_PG_URL)
