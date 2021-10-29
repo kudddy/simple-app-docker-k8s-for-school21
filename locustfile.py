@@ -41,7 +41,7 @@ class AnalyzerTaskSet(TaskSet):
 
     def get_city(self, user_id):
         url = url_for(GetUserCity.URL_PATH)
-        self.request('GET', url, HTTPStatus.OK, user_id,
+        self.request('POST', url, HTTPStatus.OK, user_id,
                      name='/get_city/')
 
     @task

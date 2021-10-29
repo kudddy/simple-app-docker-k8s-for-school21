@@ -23,7 +23,7 @@ devenv: clean
 	env/bin/pip install -U pip
 
 lint:
-	env/bin/pylama
+	pylama
 
 postgres:
 	docker run -d --rm --name some-postgres -p 5434:5432 \

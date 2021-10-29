@@ -46,6 +46,7 @@ class GetUserCity(BaseView):
         try:
             # валидация входящего запроса и синхронизуем объект с json
             user = UserCityReq(**data)
+
         except ValidationError as e:
             # пишем в лог статус
             log.info("validation error - %s", e)
