@@ -40,9 +40,9 @@ class AnalyzerTaskSet(TaskSet):
             return resp
 
     def get_city(self, user_id):
-        url = url_for(GetUserCity.URL_PATH)
+        url = url_for("/get_city/get_city/")
         self.request('POST', url, HTTPStatus.OK, user_id,
-                     name='/get_city/')
+                     name='/get_city/get_city/')
 
     @task
     def workflow(self):

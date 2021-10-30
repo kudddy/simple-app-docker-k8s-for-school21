@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: minimal-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
   - http:
@@ -22,3 +22,10 @@ spec:
             name: echo2
             port:
               number: 80
+      - path: /get_city(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: simplebackend-service
+            port:
+              number: 8080

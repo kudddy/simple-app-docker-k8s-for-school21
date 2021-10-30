@@ -27,6 +27,7 @@ class CUBE(UserDefinedType):
     def get_col_spec(self, **kw):
         return "CUBE"
 
+
 # описываем структуру база таблицы
 user_data = Table(
     'user_data',
