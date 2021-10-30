@@ -19,10 +19,6 @@ data = {
     "user_id": 123,
 }
 
-m = UserCityReq(**data)
-
-print(m.user_id)
-
 # Более сложный пример
 data = {
     "update_id": 243475549,

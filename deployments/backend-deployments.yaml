@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: simplebackend
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: simplebackend
-        image: docker.io/kudddy/iseeyoubackend
+        image: docker.io/kudddy/simpleappdockerk8s
         resources:
           requests:
             cpu: 100m

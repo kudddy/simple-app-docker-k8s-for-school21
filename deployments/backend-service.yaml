@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: simplebackend-service
 spec:
-  type: ClusterIP
   selector:
     app: simplebackend
   ports:
