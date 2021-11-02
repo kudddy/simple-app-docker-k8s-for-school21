@@ -18,12 +18,14 @@ class AnalyzerTaskSet(TaskSet):
     def create_id():
         return choice([123, 356, 678])
 
-    def request(self, method, path, expected_status,  **kwargs):
-        # payload = {'message_name': 'GET_CITY', 'user_id': user_id}
-        # headers = {'content-type': 'application/json'}
+    def request(self, method, path, expected_status, user_id,  **kwargs):
+        payload = {'message_name': 'GET_CITY', 'user_id': user_id}
+        headers = {'content-type': 'application/json'}
 
         with self.client.request(
                 method, path,
+                data=dumps(payload),
+                headers=headers,
                 catch_response=True, **kwargs
         ) as resp:
             if resp.status_code != expected_status:
@@ -37,9 +39,9 @@ class AnalyzerTaskSet(TaskSet):
             return resp
 
     def get_city(self, user_id):
-        url = url_for('/')
-        self.request('GET', url, HTTPStatus.OK,
-                     name='/')
+        url = url_for(GetUserCity.URL_PATH)
+        self.request('POST', url, HTTPStatus.OK, user_id,
+                     name='/get_city/')
 
     @task
     def workflow(self):
