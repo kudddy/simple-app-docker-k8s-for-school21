@@ -7,7 +7,7 @@ def load_config(filename: str):
     return config
 
 
-config = load_config('config/prombase.yaml')
+config = load_config('config/lcl.yaml')
 
 
 class ConfigObj(object):

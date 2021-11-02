@@ -1,7 +1,9 @@
-PROJECT_NAME ?= cicdschool21
+PROJECT_NAME ?= simpleappdockerk8s
 VERSION = $(shell python3 setup.py --version | tr '+' '-')
 PROJECT_NAMESPACE ?= kudddy
 REGISTRY_IMAGE ?= docker.io/$(PROJECT_NAMESPACE)/$(PROJECT_NAME)
+DEPLOYMENTS_NAME ?= simplebackend-deployment
+
 
 all:
 	@echo "make devenv		- Создать и установить тестововой окружение"
@@ -34,8 +36,19 @@ postgres:
 test: lint postgres
 	env/bin/pytest -vv --cov=analyzer --cov-report=term-missing tests
 
-docker:
+build:
 	docker build -t $(REGISTRY_IMAGE) .
 
-upload: docker
+upload: build
 	docker push $(REGISTRY_IMAGE):latest
+
+run:
+	docker run -d --rm -p 8080:8080 -t $(REGISTRY_IMAGE)
+
+stop:
+	docker stop $$(docker ps -q --filter ancestor=$(REGISTRY_IMAGE))
+
+
+deploy:
+	kubectl delete deployments $(DEPLOYMENTS_NAME)
+	kubectl apply -f "deployments/backend-deployments.yaml"
